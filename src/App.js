@@ -13,6 +13,7 @@ class App extends Component {
                 campsites: CAMPSITES
         }
     }
+
     render() {
         return (
             <div className="App">
