@@ -21,6 +21,8 @@ const MainComponent = () => {
             <NavbarBrand href="/">NuCamp</NavbarBrand>
           </div>
       </Navbar>
+      <Directory campsites={campsites} onClick={(campsiteId) => onCampsiteSelect(campsiteId)}
+      <CampsiteInfo campsite={campsites.filter(campsite =>  campsite.id === selectedCampsite[0])} />
     </div>
   )
 }
