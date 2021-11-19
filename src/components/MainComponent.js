@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Navbar, NavbarBrand } from 'reactstrap';
 import Directory from './DirectoryComponent';
 import CampsiteInfo from './CampsiteInfoComponent';
 import { CAMPSITES } from '../shared/campsites';
-
+import Header from './Header'
+import Footer from './Footer'
 
 const MainComponent = () => {
   const [campsites, setCampsites] = useState(CAMPSITES)
@@ -17,13 +17,10 @@ const MainComponent = () => {
 
   return (
     <div>
-      <Navbar dark color="primary">
-          <div className="container">
-            <NavbarBrand href="/">NuCamp</NavbarBrand>
-          </div>
-      </Navbar>
+      <Header/>
       <Directory campsites={campsites} onClick={(campsiteId) => onCampsiteSelect(campsiteId)} />
-      <CampsiteInfo campsite={campsites.filter(campsite => campsite.id === selectedCampsite[0])} />
+      {/* <CampsiteInfo campsite={campsites.filter(campsite => campsite.id === selectedCampsite[0])} /> */}
+      <Footer/>
     </div>
   )
 }

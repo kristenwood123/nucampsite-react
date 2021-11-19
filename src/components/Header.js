@@ -5,7 +5,7 @@ import { Navbar, NavbarBrand, Jumbotron } from 'reactstrap';
 const Header = () => {
   return (
 <React.Fragment>
-  <Jumbotron fluid>
+  {/* <Jumbotron fluid> */}
       <div className="container">
           <div className="row">
               <div className="col">
@@ -14,7 +14,7 @@ const Header = () => {
               </div>
           </div>
       </div>
-  </Jumbotron>
+  {/* </Jumbotron> */}
 
   <Navbar dark sticky="top">
       <div className="container">
@@ -25,3 +25,4 @@ const Header = () => {
 }
 
 export default Header
+
