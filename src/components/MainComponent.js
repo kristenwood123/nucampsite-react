@@ -34,6 +34,15 @@ class Main extends Component {
             );
         };
 
+        const CampsiteWithId = ({match}) => {
+            return (
+                <CampsiteInfo 
+                    campsite={this.state.campsites.filter(campsite => campsite.id === +match.params.campsiteId)[0]}
+                    comments={this.state.comments.filter(comment => comment.campsiteId === +match.params.campsiteId)}
+                />
+            );
+        };    
+
         return (
             <div>
                 <Header />
@@ -41,6 +50,7 @@ class Main extends Component {
                     <Route path='/home' component={HomePage} />
                     <Route exact path='/directory' render={() => <Directory campsites={this.state.campsites} />} />
                     <Route exact path='/contactus' component={Contact} />
+                    <Route path='/directory/:campsiteId' component={CampsiteWithId} />
                     <Redirect to='/home' />
                 </Switch>
                 <Footer />
@@ -50,26 +60,3 @@ class Main extends Component {
       }
 
 export default Main
-
-
-
-  // const onCampsiteSelect = (campsiteId) => {
-  //   setSelectedCampsite({selectedCampsite: campsiteId})
-  // }
-
-  // const HomePage = () => {
-  //           return (
-  //               <Home />
-  //           );
-  //       }
-  // return (
-  //   <div>
-  //     <Header/>
-  //     <Switch>
-  //         <Route path='/home' component={HomePage} />
-  //         <Route exact path='/directory' render={() => <Directory campsites={campsites} />} />
-  //         <Redirect to='/home'/>
-  //       <CampsiteInfo campsite={campsites.filter(campsite => campsite.id === selectedCampsite[0])} />
-  //     </Switch>
-  //     <Footer/>
-  //   </div>
