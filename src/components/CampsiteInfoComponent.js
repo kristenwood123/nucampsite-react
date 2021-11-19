@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 
 
 
-  const renderCampsite = (campsite) => {
+  function renderCampsite ({campsite}) {
     return (
       <div className="col-md-5 m-1">
         <Card>
@@ -17,7 +17,7 @@ import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
     )
   }
 
-  const renderComments = (comments) => {
+  function renderComments ({comments}) {
     if(comments) {
       return(
         <div className="col-md-5 m-1">
@@ -41,8 +41,8 @@ import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
         return (
             <div className="container">
                 <div className="row">
-                    <RenderCampsite campsite={props.campsite} />
-                    <RenderComments comments={props.campsite.comments} />
+                    <renderCampsite campsite={props.campsite} />
+                    <renderComments comments={props.campsite.comments} />
                 </div>
             </div>
         );
@@ -50,4 +50,4 @@ import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
     return <div />;
 }
 
-export default CampsiteInfoComponent;
+export default CampsiteInfo;
