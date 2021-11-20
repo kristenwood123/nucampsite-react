@@ -6,12 +6,14 @@ import { Link } from 'react-router-dom';
 function About(props) {
 
     const partners = props.partners.map(partner => {
-        return (
-            <h5>{partner.name}</h5>
+      return (
+           <Media tag='li' key={partner.id}>
+             <RenderPartner partner={partner}/>
+           </Media>
         );
-    });
-
-    return (
+      });
+      
+      return (
         <div className="container">
             <div className="row">
                 <div className="col">
@@ -74,3 +76,19 @@ function About(props) {
 }
 
 export default About;
+
+function RenderPartner(props) {
+  const { image, name, description } = props.partner
+    if(props.partner) {
+      
+      return (
+        <React.Fragment>
+          <Media object src={image} alt={name} width='150'/>
+          <Media body className='ml-5 mb-4'>
+            <Media heading>{name}</Media>
+            <p>{description}</p>
+          </Media>
+        </React.Fragment>
+        )}
+   }
+
