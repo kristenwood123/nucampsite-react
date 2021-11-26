@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Breadcrumb, BreadcrumbItem,
     Button, Form, FormGroup, Label, Input, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import FormFeedback from 'reactstrap/lib/FormFeedback';
 
 class Contact extends Component {
     
@@ -59,7 +60,7 @@ if (this.state.touched.firstName) {
         }
         return errors;
     }
-    
+
     handleBlur = (field) => () => {
         this.setState({
             touched: {...this.state.touched, [field]: true}
@@ -82,6 +83,8 @@ if (this.state.touched.firstName) {
         event.preventDefault();
     }
     render() {
+        const errors = this.validate(this.state.firstName, this.state.lastName, this.state.phoneNum, this.state.email); 
+
     return (
             <div className="container">
                 <div className="row">
@@ -109,7 +112,7 @@ if (this.state.touched.firstName) {
                         <a role="button" className="btn btn-link" href="mailto:fakeemail@fakeemail.co"><i className="fa fa-envelope-o" /> campsites@nucamp.co</a>
                     </div>
                 </div>
-    <div className="row row-content">
+                <div className="row row-content">
                     <div className="col-12">
                         <h2>Send us your Feedback</h2>
                         <hr />
@@ -122,7 +125,9 @@ if (this.state.touched.firstName) {
                                     <Input type="text" id="firstName" name="firstName"
                                         placeholder="First Name"
                                         value={this.state.firstName}
+                                        invalid={errors.firstName}
                                         onChange={this.handleInputChange} />
+                                        <FormFeedback>{errors.firstName}</FormFeedback>
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
@@ -131,7 +136,9 @@ if (this.state.touched.firstName) {
                                     <Input type="text" id="lastName" name="lastName"
                                         placeholder="Last Name"
                                         value={this.state.lastName}
+                                        invalid={errors.lastName}
                                         onChange={this.handleInputChange} />
+                                         <FormFeedback>{errors.lastName}</FormFeedback>
                                 </Col>                        
                             </FormGroup>
                             <FormGroup row>
@@ -140,7 +147,9 @@ if (this.state.touched.firstName) {
                                     <Input type="tel" id="phoneNum" name="phoneNum"
                                         placeholder="Phone number"
                                         value={this.state.phoneNum}
+                                        invalid={errors.phoneNum}
                                         onChange={this.handleInputChange} />
+                                         <FormFeedback>{errors.phoneNum}</FormFeedback>
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
@@ -149,7 +158,9 @@ if (this.state.touched.firstName) {
                                     <Input type="email" id="email" name="email"
                                         placeholder="Email"
                                         value={this.state.email}
+                                        invalid={errors.email}
                                         onChange={this.handleInputChange} />
+                                         <FormFeedback>{errors.email}</FormFeedback>
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
