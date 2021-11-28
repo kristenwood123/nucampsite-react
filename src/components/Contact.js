@@ -68,8 +68,8 @@ class Contact extends Component {
                         <hr />
                     </div>
                     <div className="col-md-10">
-                        <Form onSubmit={this.handleSubmit}>
-                            <FormGroup row>
+                        <LocalForm onSubmit={values => this.handleSubmit(values)}>
+                            <Row className='form-group'>
                                 <Label htmlFor="firstName" md={2}>First Name</Label>
                                 <Col md={10}>
                                     <Input type="text" id="firstName" name="firstName"
@@ -80,8 +80,8 @@ class Contact extends Component {
                                         onChange={this.handleInputChange} />
                                         <FormFeedback>{errors.firstName}</FormFeedback>
                                 </Col>
-                            </FormGroup>
-                            <FormGroup row>
+                            </Row>
+                            <Row className='form-group'>
                                 <Label htmlFor="lastName" md={2}>Last Name</Label>
                                 <Col md={10}>
                                     <Input type="text" id="lastName" name="lastName"
@@ -92,8 +92,8 @@ class Contact extends Component {
                                         onChange={this.handleInputChange} />
                                          <FormFeedback>{errors.lastName}</FormFeedback>
                                 </Col>                        
-                            </FormGroup>
-                            <FormGroup row>
+                            </Row>
+                            <Row className='form-group'>
                                 <Label htmlFor="phoneNum" md={2}>Phone</Label>
                                 <Col md={10}>
                                     <Input type="tel" id="phoneNum" name="phoneNum"
@@ -104,8 +104,8 @@ class Contact extends Component {
                                         onChange={this.handleInputChange} />
                                          <FormFeedback>{errors.phoneNum}</FormFeedback>
                                 </Col>
-                            </FormGroup>
-                            <FormGroup row>
+                            </Row>
+                            <Row className='form-group'>
                                 <Label htmlFor="email" md={2}>Email</Label>
                                 <Col md={10}>
                                     <Input type="email" id="email" name="email"
@@ -116,10 +116,10 @@ class Contact extends Component {
                                         onChange={this.handleInputChange} />
                                          <FormFeedback>{errors.email}</FormFeedback>
                                 </Col>
-                            </FormGroup>
-                            <FormGroup row>
+                            </Row>
+                            <Row className='form-group'>
                                 <Col md={{size: 4, offset: 2}}>
-                                    <FormGroup check>
+                                    <div className='check'>
                                         <Label check>
                                             <Input type="checkbox"
                                                 name="agree"
@@ -127,7 +127,7 @@ class Contact extends Component {
                                                 onChange={this.handleInputChange} /> {' '}
                                             <strong>May we contact you?</strong>
                                         </Label>
-                                    </FormGroup>
+                                    </div>
                                 </Col>
                                 <Col md={4}>
                                     <Input type="select" name="contactType"
@@ -137,8 +137,8 @@ class Contact extends Component {
                                         <option>By Email</option>
                                     </Input>
                                 </Col>
-                            </FormGroup>
-                            <FormGroup row>
+                            </Row>
+                            <Row className='form-group'>
                                 <Label htmlFor="feedback" md={2}>Your Feedback</Label>
                                 <Col md={10}>
                                     <Input type="textarea" id="feedback" name="feedback"
@@ -146,15 +146,15 @@ class Contact extends Component {
                                         value={this.state.feedback}
                                         onChange={this.handleInputChange}></Input>
                                 </Col>
-                            </FormGroup>
-                            <FormGroup row>
+                            </Row>
+                            <Row className='form-group'>
                                 <Col md={{size: 10, offset: 2}}>
                                     <Button type="submit" color="primary">
                                         Send Feedback
                                     </Button>
                                 </Col>
-                            </FormGroup>
-                        </Form>
+                            </Row>
+                        </LocalForm>
                     </div>
                 </div>
             </div>
