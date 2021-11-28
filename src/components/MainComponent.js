@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux'
 
-
 // Components
 import Header from './Header'
 import Footer from './Footer'
@@ -14,7 +13,7 @@ import About from './About'
 
 const mapStateToProps = state => {
     return {
-        campstites: state.campsites,
+        campsites: state.campsites,
         comments: state.comments,
         partners: state.partners,
         promotions: state.promotions,
