@@ -1,8 +1,84 @@
-import React from 'react';
-import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import React, { Component } from 'react';
+import { Card, CardImg, CardText, CardBody, Breadcrumb, BreadcrumbItem, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { LocalForm } from 'react-redux-form'
 import { Link } from 'react-router-dom';
+import { FaPencilAlt } from 'react-icons/fa'
+import { Control } from 'react-redux-form';
 
+class CommentForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isModalOpen: false,
+    };
 
+    this.toggleModal = this.toggleModal.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  toggleModal() {
+    this.setState({ isModalOpen: !this.state.isModalOpen });
+  }
+
+  handleSubmit(values) {
+    this.toggleModal();
+    this.props.addComment(
+      this.props.campsiteId,
+      values.rating,
+      values.author,
+      values.text
+    );
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        <Button onClick={this.toggleModal} outline className='fa-lg'><FaPencilAlt/> Submit Comment</Button>
+        <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+          <ModalHeader toggle={this.toggleModal}>Submit Comment</ModalHeader>
+          <ModalBody>
+          <LocalForm>
+            <div className="form-group">
+              <label htmlFor="rating">Rating</label>
+              <Control.select
+                model='.rating'
+                id='rating'
+                name='rating'
+                className='form-control'>
+                  <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+              </Control.select>
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="author">Your Name</label>
+              <Control.text 
+                model='.author'
+                id='author'
+                name='author'
+                className='form-control'
+                placeholder='Your Name'>
+              </Control.text> 
+            </div>
+           <div className="form-group">
+             <label htmlFor="comment">Comment</label>
+              <Control.textarea
+                model='.comment'
+                id='comment'
+                name='comment'
+                className='form-control'>
+              </Control.textarea>
+            </div>
+          </LocalForm>
+          </ModalBody>
+        </Modal>
+      </React.Fragment>
+    );
+  }
+}
 
   function RenderCampsite ({campsite}) {
     return (
@@ -22,14 +98,15 @@ import { Link } from 'react-router-dom';
       return(
         <div className="col-md-5 m-1">
           <h4>Comments</h4>
-          {(this.props.campsite.comments.map(comment => {
+          {comments.map(comment => {
             return (
               <>
               <p>{comment.text}</p>
               <p>-- {comment.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
               </>
             )
-          }))}
+          })}
+          <CommentForm/>
         </div>
       )
     }
