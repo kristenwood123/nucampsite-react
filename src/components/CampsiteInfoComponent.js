@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { Card, CardImg, CardText, CardBody, Breadcrumb, BreadcrumbItem, Button, Modal, ModalHeader, ModalBody } from 'reactstrap';
-import { LocalForm } from 'react-redux-form'
+import { LocalForm, Errors } from 'react-redux-form'
 import { Link } from 'react-router-dom';
 import { FaPencilAlt } from 'react-icons/fa'
 import { Control } from 'react-redux-form';
+
+const max = (len) => (val) => !val || val.length <= len;
+const min = (len) => (val) => val && val.length >= len;
 
 class CommentForm extends Component {
   constructor(props) {
@@ -60,19 +63,34 @@ class CommentForm extends Component {
                 id='author'
                 name='author'
                 className='form-control'
-                placeholder='Your Name'>
-              </Control.text> 
+                placeholder='Your Name'
+                validators={{
+                  min: min(2),
+                  max: max(15)
+                }}
+              /> 
+              <Errors
+                className="text-danger"
+                model=".author"
+                show="touched"
+                component="div"
+                messages={{
+                    min: 'Must be at least 2 characters',
+                    max: 'Must be 15 characters or less',
+                  }}
+                />
             </div>
-           <div className="form-group">
-             <label htmlFor="comment">Comment</label>
-              <Control.textarea
-                model='.comment'
-                id='comment'
-                name='comment'
-                className='form-control'>
-              </Control.textarea>
-            </div>
-          </LocalForm>
+            <div className="form-group">
+              <label htmlFor="comment">Comment</label>
+                <Control.textarea
+                  model='.comment'
+                  id='comment'
+                  name='comment'
+                  className='form-control'>
+                </Control.textarea>
+              </div>
+              <Button onSubmit={this.handleSubmit}>Submit Comment</Button>
+            </LocalForm>
           </ModalBody>
         </Modal>
       </React.Fragment>
