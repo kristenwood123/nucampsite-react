@@ -111,7 +111,7 @@ class CommentForm extends Component {
     )
   }
 
-  function RenderComments ({comments}) {
+  function RenderComments ({comments, addComment, campsiteId}) {
     if(comments) {
       return(
         <div className="col-md-5 m-1">
@@ -124,11 +124,10 @@ class CommentForm extends Component {
               </>
             )
           })}
-          <CommentForm/>
+          <CommentForm campsiteId={campsiteId} addComment={addComment}/>
         </div>
       )
     }
-    <div></div>
   }
 
   function CampsiteInfo(props) {
@@ -147,7 +146,11 @@ class CommentForm extends Component {
                 </div>
                 <div className="row">
                     <RenderCampsite campsite={props.campsite} />
-                    <RenderComments comments={props.comments} />
+                    <RenderComments 
+                      comments={props.comments}
+                      addComment={props.addComment}
+                      campsiteId={props.campsiteId}
+                    />
                 </div>
             </div>
         );
