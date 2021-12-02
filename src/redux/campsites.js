@@ -1,5 +1,5 @@
 import { CAMPSITES } from '../shared/campsites'
-import * as ActionTypes from './ActionTypes'
+import * as ActionTtypes from './ActionTypes'
 
 export const Campsites = (state = {
     isLoading: true,
