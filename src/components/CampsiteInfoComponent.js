@@ -4,6 +4,7 @@ import { LocalForm, Errors } from 'react-redux-form'
 import { Link } from 'react-router-dom';
 import { FaPencilAlt } from 'react-icons/fa'
 import { Control } from 'react-redux-form';
+import { Loading } from './Loading'
 
 const max = (len) => (val) => !val || val.length <= len;
 const min = (len) => (val) => val && val.length >= len;
@@ -131,6 +132,26 @@ class CommentForm extends Component {
   }
 
   function CampsiteInfo(props) {
+    if (props.isLoading) {
+        return (
+            <div className="container">
+                <div className="row">
+                    <Loading />
+                </div>
+            </div>
+        );
+    }
+    if (props.errMess) {
+        return (
+            <div className="container">
+                <div className="row">
+                    <div className="col">
+                        <h4>{props.errMess}</h4>
+                    </div>
+                </div>
+            </div>
+        );
+    }
     if (props.campsite) {
         return (
             <div className="container">
