@@ -33,6 +33,8 @@ export const addComment = (campsiteId, rating, author, text) => ({
     }
 });
 
+// Partners
+
 export const fetchPartners = () => dispatch => {
     dispatch(partnersLoading());
     setTimeout(() => {
@@ -49,10 +51,6 @@ export const addPartners = partners => ({
 })
 
 export const partnersFailed = errMess => ({
-    type: ActionType.PARTNERS_FAILED,
+    type: ActionTypes.PARTNERS_FAILED,
     payload: errMess
 })
-
-// export const ADD_PARTNERS = 'ADD_PARTNERS'
-// export const PARTNERS_LOADING = 'PARTNERS_LOADING'
-// export const PARTNERS_FAILED = 'PARTNERS_FAILED'
