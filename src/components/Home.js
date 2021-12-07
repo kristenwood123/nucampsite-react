@@ -3,7 +3,7 @@ import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap'
 import { Loading } from './Loading'
 
 function RenderCard({item, isLoading, errMess}) {
-    if (isLoading) {
+    if (isLoading || !item) {
         return <Loading />;
         }
         if (errMess) {
