@@ -12,7 +12,7 @@ import Directory from './DirectoryComponent';
 import CampsiteInfo from './CampsiteInfoComponent';
 import About from './About'
 
-import { addComment, fetchCampsites, fetchPartners, postFeedback } from '../redux/ActionCreators'
+import { addComment, fetchCampsites, fetchPartners, postFeedback, postComment } from '../redux/ActionCreators'
 
 const mapStateToProps = state => {
     return {
@@ -24,6 +24,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
+    postComment: ((campsiteId, rating, author, text) => (postComment(campsiteId, rating, author, text))),
     addComment: (campsiteId, rating, author, text) => (addComment(campsiteId, rating, author, text)),
     fetchCampsites: () => fetchCampsites(),
     fetchPartners: () => fetchPartners(),
