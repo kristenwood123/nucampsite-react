@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { FaPencilAlt } from 'react-icons/fa'
 import { Control } from 'react-redux-form';
 import { Loading } from './Loading'
+import { baseUrl } from '../shared/baseUrl'
 
 const max = (len) => (val) => !val || val.length <= len;
 const min = (len) => (val) => val && val.length >= len;
@@ -103,7 +104,7 @@ class CommentForm extends Component {
     return (
       <div className="col-md-5 m-1">
         <Card>
-          <CardImg top src={campsite.image} alt={campsite.name}/>
+          <CardImg top src={baseUrl + campsite.image} alt={campsite.name}/>
             <CardBody>
                 <CardText>{campsite.description}</CardText>
             </CardBody>
