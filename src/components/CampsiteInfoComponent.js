@@ -6,6 +6,7 @@ import { FaPencilAlt } from 'react-icons/fa'
 import { Control } from 'react-redux-form';
 import { Loading } from './Loading'
 import { baseUrl } from '../shared/baseUrl'
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
 const max = (len) => (val) => !val || val.length <= len;
 const min = (len) => (val) => val && val.length >= len;
@@ -103,6 +104,7 @@ class CommentForm extends Component {
   function RenderCampsite ({campsite}) {
     return (
       <div className="col-md-5 m-1">
+        
         <Card>
           <CardImg top src={baseUrl + campsite.image} alt={campsite.name}/>
             <CardBody>
@@ -118,14 +120,20 @@ class CommentForm extends Component {
       return(
         <div className="col-md-5 m-1">
           <h4>Comments</h4>
-          {comments.map(comment => {
-            return (
-              <>
-              <p>{comment.text}</p>
-              <p>-- {comment.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
-              </>
-            )
-          })}
+          <Stagger in>
+            {
+              comments.map(comment => {
+              return (
+                <Fade in key ={comment.id}>
+                <div>
+                <p>{comment.text}</p>
+                <p>-- {comment.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p>
+                </div>
+                </Fade>
+              )
+            })
+            }
+            </Stagger>
           <CommentForm campsiteId={campsiteId} addComment={addComment}/>
         </div>
       )
