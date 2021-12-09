@@ -14,7 +14,7 @@ import About from './About'
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 
-import { addComment, fetchCampsites, fetchPartners, postFeedback, postComment } from '../redux/ActionCreators'
+import { fetchCampsites, fetchPartners, postFeedback, postComment, fetchComments, fetchPromotions } from '../redux/ActionCreators'
 
 const mapStateToProps = state => {
     return {
@@ -26,12 +26,13 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-    postComment: ((campsiteId, rating, author, text) => (postComment(campsiteId, rating, author, text))),
-    addComment: (campsiteId, rating, author, text) => (addComment(campsiteId, rating, author, text)),
-    fetchCampsites: () => fetchCampsites(),
-    fetchPartners: () => fetchPartners(),
-    resetFeedbackForm: () => (actions.reset('feedbackForm')),
-    postFeedback: (text) => (postFeedback(text))
+  postComment: (campsiteId, rating, author, text) => (postComment(campsiteId, rating, author, text)),
+    fetchCampsites: () => (fetchCampsites()),
+    fetchComments: () => (fetchComments()),
+    fetchPromotions: () => (fetchPromotions()),
+    fetchPartners: () => (fetchPartners()),
+    postFeedback: (text) => (postFeedback(text)),
+    resetFeedbackForm: () => (actions.reset('feedbackForm'))
 };
 
 class Main extends Component {
@@ -39,6 +40,8 @@ class Main extends Component {
     componentDidMount() {
         this.props.fetchCampsites();
         this.props.fetchPartners();
+        this.props.fetchComments();
+        this.props.fetchPromotions();
     }
 
   render() {
